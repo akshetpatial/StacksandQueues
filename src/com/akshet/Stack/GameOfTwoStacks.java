@@ -13,12 +13,16 @@ public class GameOfTwoStacks {
         if(sum>max || stack1.isEmpty() || stack2.isEmpty())
             return count;
 
-
-        int remove_left_element = stack1.pop();
-        int left = helperFunction(stack1,stack2,sum,count++,max);
-        int remove_right_element = stack2.pop();
-        int right = helperFunction(stack1,stack2,sum,count++,max);
-
+        int left= 0;
+        int right =0;
+        if(!stack1.isEmpty()){
+            int remove_left_element = stack1.pop();
+            left = helperFunction(stack1,stack2,sum+remove_left_element,count+1,max);
+        }
+        if(!stack2.isEmpty()) {
+            int remove_right_element = stack2.pop();
+            right = helperFunction(stack1,stack2,sum+remove_right_element,count+1,max);
+        }
         return Math.max(left,right);
     }
 
